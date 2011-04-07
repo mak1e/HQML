@@ -1,0 +1,319 @@
+/* CSS Document */
+
+
+body	{  
+		margin:0px;
+		font:normal 12px/20px "Lucida Sans Unicode", Arial, Helvetica, sans-serif;
+		background:#fff;
+		}
+		
+* html 	{
+		margin:0;padding:0;
+	   	}
+
+
+.img_border	{
+			padding:1px;  
+			background:#FFFFFF;
+			border:5px solid #CFCFCF;
+			margin-bottom:10px; 
+			
+			}
+
+.img_border:hover 	{
+					border:5px solid #aaa;
+					}	
+				  	
+a	{
+	text-decoration:none;
+	color:#0091D4;
+	outline:none;	
+	}
+  
+a:hover	{
+		color:#0091D4;
+		text-decoration:underline;
+       	}
+
+
+.alignleft	{
+			float:left;
+			margin:10px 20px 10px 0;
+			}
+			
+.alignright	{
+			float:right;
+			margin:0px 5px 15px 15px;	
+			}
+			
+.aligncenter	{
+				clear:both;
+				display:block;
+				margin:10px auto;
+				padding:10px 0;
+				}			
+		
+.floatleft { float:left; }	
+.floatright { float:right;}	
+
+.clear	{	clear:both;	}
+
+p	{
+	color:#5c5c5c;
+	font-size:12px;
+	}
+
+
+
+.img	{
+		border:2px solid #eee;
+		margin:10px 30px  10px 0;
+		padding:5px;
+		
+		}
+		
+	.border	{
+		background:#f5f5f5;
+		border:1px solid #b7b7b7;
+		padding:3px;
+		}
+
+
+@font-face {
+	font-family: 'PTSansNarrowRegular';
+	src: url('../fonts/PT_Sans_Narrow.eot');
+	src: local('PT Sans Narrow Regular'), local('PTSans-Narrow'), url('../fonts/PT_Sans_Narrow.woff') format('woff'), url('../fonts/PT_Sans_Narrow.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'PTSansBold';
+	src: url('../fonts/PT_Sans_Bold.eot');
+	src: local('PT Sans Bold'), local('PTSans-Bold'), url('../fonts/PT_Sans_Bold.woff') format('woff'), url('../fonts/PT_Sans_Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'PTSansRegular';
+	src: url('../fonts/PT_Sans.eot');
+	src: local('PT Sans Regular'), local('PTSans-Regular'), url('../fonts/PT_Sans.woff') format('woff'), url('../fonts/PT_Sans.ttf') format('truetype');
+}
+
+
+/* Headings
+------------------------------------------------------*/
+
+
+
+h1	{
+	font: normal 28px/28px "PTSansBold", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin:0;
+	color:#000;
+	}
+
+h2	{
+	font: normal 25px/26px "PTSansBold", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#000;
+	margin:0 0 10px 0;	
+	}
+
+h3 	{ 
+	font: normal 22px/24px "PTSansBold", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#000;
+	margin:0 0 10px 0;
+	}
+
+h4 	{ 
+	font: normal 18px/20px "PTSansBold", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#000; 
+	margin:0;
+	}
+
+h5 	{ 
+	font: bold 14px "Trebuchet MS", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#000; 
+	margin:0;
+	}
+
+h6 	{ 
+	font: italic normal 12px "Trebuchet MS", "Trebuchet MS", Arial, Helvetica, sans-serif;
+	color:#000; 
+	margin:0;
+	}
+
+
+/* Page Structure
+------------------------------------------------------*/	
+#Wrapper	{
+			width:100%;
+			} 
+	 
+
+			
+/* topmenu
+------------------------------------------------------*/
+#menu	{
+			margin-top:40px;
+			float:right;
+			}
+
+
+/* index sliderpart
+--------------------------------------------------------------------------------------------------*/
+
+#sliderbg	{
+	background:#0066af url(../images/bg.jpg) top center no-repeat;
+			width:100%;
+			height:310px;
+
+			} 	
+	.slider_text	{
+					margin:0;
+					padding:0;	
+					}
+
+		 .slider_text h1	 {
+							 margin:60px 0 0 10px;
+							 }
+	 
+			.slider_text p	{
+							margin:20px 0 0px 10px;
+							}
+	 	 
+				.button	{
+						margin:20px 0 20px 10px;
+						}
+				
+
+/* slider
+------------------------------------------------------*/			
+
+/* Sub Header
+------------------------------------------------------*/
+#subheader	{
+				
+				margin:0px;
+				padding: 0px;
+				background:url(../images/subheaderbg.jpg) repeat-x;
+				height:100px;
+				
+				}
+
+	#subheader h2	{
+						color:#fff;
+						margin:30px 0;
+						}
+
+	#subheader p	{
+					float:right;
+					color:#fff;
+					font-size:10px;
+					margin:40px 0;
+					text-transform:uppercase;
+					}
+
+			
+/* Mid Content
+------------------------------------------------------*/	
+.midcontent	{
+
+			padding:0px;
+			margin:0px;
+			}
+
+
+	.content	{
+	
+			
+				padding:30px 10px 30px 0px;
+				}
+		
+		.line	{
+				border-right:1px solid #ddd;
+				}
+
+
+
+/* sidebarbox(index)
+--------------------------------------------------------*/
+		
+.sidebarbox h3 		{ 
+	color:#4D4C4C;
+	text-align:center;
+	padding-bottom: 10px;
+	margin:0;
+	text-decoration:none;
+	}
+
+	.sidebarbox	{
+		background:#FFFFFF url(../images/h3-bg.gif) repeat-x;
+		}
+
+
+		.sidebarbox {
+			border:1px solid #cbcbcb;
+			padding:5px 15px 15px 15px;
+			-moz-border-radius:3px;
+			-webkit-border-radius:3px;
+			-khtml-border-radius:3px;
+			}
+
+			.tour	{
+				padding:0px 0 0 10px;
+
+
+			}
+
+
+/* Sidebar
+--------------------------------------------------------*/
+
+
+
+	.imgborder	{
+				padding:3px;
+				border:1px solid #dadada;
+				}
+
+	.img	{
+			background:#dee0e1;
+			padding:5px;
+			float:left;
+			margin-right:15px;
+			}
+			
+	.l1	{list-style:circle;
+		
+		}	
+		
+	
+ul.newslist {
+            margin:0 0 20px 0;
+            padding:0;
+            list-style:none;
+            }
+            
+    ul.newslist li {
+                padding:10px 0; 
+                font-size:11px;
+                line-height:normal;
+                border-bottom:1px solid #ddd;
+                }
+
+    ul.newslist li h5 {
+    font-weight:bold;
+    margin-top:8px;
+    }
+
+	ul.newslist li span	{
+			font-size:10px;
+			font:normal 10px Tahoma, "Trebuchet MS", sans-serif;
+			color:#5c5c5c;
+			padding:2px 0;
+			display:inline;
+			text-align:left;
+			}
+			
+				
+		
+
+ 
+
