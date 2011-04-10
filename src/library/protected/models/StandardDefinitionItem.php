@@ -25,29 +25,19 @@ class StandardDefinitionItem extends CActiveRecord {
         return parent::model($className);
     }
 
-    /**
-     * @return string the associated database table name
-     */
     public function tableName() {
         return '{{standard_definition_items}}';
     }
 
-    /**
-     * @return array validation rules for model attributes.
-     */
     public function rules() {
         $rules =  array(
-            array('standard_definition_section_id','safe'),
-            array('name','safe'),
-            array('description','safe'),
-            array('weight','safe'),
-        ); //add rules here
+            array('standard_definition_section_id, name, description, '
+                . 'weight, attribute_type, object_type_id, is_required, '
+                . 'is_multiple' ,'safe')
+        );
         return $rules;
     }
 
-    /**
-     * @return array relational rules.
-     */
     public function relations() {
         $relations = array(
             'section' => array(self::BELONGS_TO, 'StandardDefinitionSection',
@@ -58,17 +48,14 @@ class StandardDefinitionItem extends CActiveRecord {
         return $relations;
     }
 
-    /**
-     * @return array customized attribute labels (name=>label)
-     */
     public function attributeLabels() {
         $attributeLabels = array(
             'id' => 'ID',
-            'standard_definition_section_id' => 'Standard Definition Section ID',
+            'standard_definition_section_id' => 'Standard Definition Section',
             'name' => 'Name',
             'description' => 'Description',
             'weight' => 'Weight',
-        ); //add labels here
+        );
         return $attributeLabels;
     }
 
@@ -76,6 +63,17 @@ class StandardDefinitionItem extends CActiveRecord {
             return array(
                 'order' => 'weight ASC',
             );
+    }
+
+    public static function getAttributesListData() {
+        return array(
+            'object_data_id' => 'object_data_id',
+            'blob' => 'blob',
+            'date_time' => 'date_time',
+            'decimal' => 'decimal',
+            'integer' => 'integer',
+            'string' => 'string'
+        );
     }
 }
 ?>

@@ -7,7 +7,7 @@
  * @author Antonio San Miguel
  */
 class SearchController extends Controller {
-
+ 
     /**
      * Declares class-based actions.
      */
@@ -74,7 +74,7 @@ class SearchController extends Controller {
 
     public function actionAdvanced() {
         $criteria = new CDbCriteria();
-        $ownerCriteria = new CDbCriteria();
+       $ownerCriteria = new CDbCriteria();
         $domainCriteria = new CDbCriteria();
         //$statusCriteria = new CDbCriteria();
 
@@ -94,16 +94,12 @@ class SearchController extends Controller {
           $search = $_GET['search'];
           
           $criteria->compare('title', $search, true, 'OR');
-          
           //$criteria->addCondition('owner_organisation_id LIKE '. $domain->id);
-          
-        
-
-        echo '<pre>';
-        print_r(CJSON::encode($owner));
-        //print_r();
-        echo '</pre>';
-          
+                echo '<pre>';
+                print_r(CJSON::encode(array($owner)));
+                //print_r();
+                
+                echo '</pre>';
         }
 
 //        $statusCriteria->select='name';
@@ -112,12 +108,13 @@ class SearchController extends Controller {
         $dataProvider=new CActiveDataProvider("Measure", array('criteria'=>$criteria));
 
         $this->render('/search/advanced',array(
-          'dataProvider'=>$dataProvider, 
-          'owner'=>$owner,
+          'dataProvider'=>$dataProvider,
+          'owner'=> $owner,
           'domain'=>$domain,
-          'status'=>$status
+          //'status'=>$status
         ));
-
+        
+        
     }
  public function actionSample() {
      print_r($domain);

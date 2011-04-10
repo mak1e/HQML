@@ -54,6 +54,9 @@ class StandardDefinitionSection extends CActiveRecord {
         return $attributeLabels;
     }
 
-    
+    public static function getListData() {
+        return CHtml::listData(StandardDefinitionSection::model()->findAll(),
+                'id', 'name');
+    }
 }
 ?>
