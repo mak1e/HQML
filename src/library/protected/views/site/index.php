@@ -24,7 +24,6 @@
 </div>
 <div class="vertical-line"></div>
 <div id="right-sidebar">
-<div class="sidebar-box"><img src="images/search-bar.jpg" alt="DeOsc Media"/></div>
 <div class="sidebar-box">
 <!-- start: announcements -->
 		<h3>Announcements</h3>

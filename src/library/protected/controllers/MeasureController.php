@@ -131,7 +131,7 @@ class MeasureController extends Controller {
 //        }
     }
 
-    public function actionViewItem() {
+    private function viewItem() {
         if (isset($_GET['id']) && isset($_GET['item_id'])) {
             if (!$this->loadMeasure($_GET['id'])) {
                 echo 'This Measure does not exist';
@@ -210,8 +210,11 @@ class MeasureController extends Controller {
                             $measureItem->object_data_id = $toAdd;
                             $measureItem->save();
                         }
-                        $this->redirect(array('measure/view',
-                            'id' => $this->_measure->id));
+//                        $this->redirect(array('measure/viewItem',
+//                            'id' => $this->_measure->id,
+//                            'item_id' => $this->_standardItem->id));
+                        $this->viewItem();
+                        Yii::app()->end();
                     }
                     $this->renderPartial('/measure/_item/formMultipleObject',
                             array('model' => $this->_item,
@@ -223,8 +226,11 @@ class MeasureController extends Controller {
                     if(isset($_POST['MeasureItem'])) {
                         $this->_item->attributes = $_POST['MeasureItem'];
                         if ($this->_item->save()) {
-                            $this->redirect(array('measure/view',
-                            'id' => $this->_measure->id));
+//                            $this->redirect(array('measure/viewItem',
+//                            'id' => $this->_measure->id,
+//                            'item_id' => $this->_standardItem->id));
+                            $this->viewItem();
+                            Yii::app()->end();
                         }
                     }
                     $this->renderPartial('/measure/_item/form', array(

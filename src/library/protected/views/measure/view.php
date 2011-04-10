@@ -1,8 +1,8 @@
 <div class="grid_11">
     <div>
-        <h2>
+        <h1>
             <?php echo $data->title; ?>
-        </h2>
+        </h1>
         <p>
             <?php
             if ($revision->is_locked) {
@@ -34,7 +34,7 @@
             <tr>
                 <td class="standardItem"
                     id="standardItem_<?php echo $item->id ?>">
-                    <h4><?php echo $item->name; ?></h4>
+                    <?php echo $item->name; ?>
                     <?php
                     if (!$revision->is_locked) {
                         echo CHtml::ajaxLink('Update Item',

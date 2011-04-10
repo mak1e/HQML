@@ -49,7 +49,9 @@
 <!-- end header -->
 
 <div id="breadcrumb-holder">
-<p>You are here: Home > Library</p>
+<p><?php $this->widget('zii.widgets.CBreadcrumbs', array(
+		'links'=>$this->breadcrumbs,
+	)); ?></p>
 </div>
 
 <!-- start content -->

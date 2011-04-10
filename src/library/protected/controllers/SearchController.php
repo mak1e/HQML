@@ -100,10 +100,13 @@ class SearchController extends Controller {
 //                //print_r();
 //
 //                echo  '</pre>';
-
+               if(isset($_GET['Organisation'])){
+                    print_r($_GET['Organisation']);
+                    //$criteria->addCondition('owner_organisation_id LIKE '. $_GET['Organisation']);
+               }
                 
         }
-
+         
 //        $statusCriteria->select='name';
 //        $status = DomainOfQuality::model()->find($domainCriteria);
 
@@ -116,7 +119,7 @@ class SearchController extends Controller {
           //'status'=>$status
         ));
         //$this->Options();
-        print_r($lst);
+       
     }
  public function ActionOptions() {
     return $this->renderPartial('/search/options', array('owner'=>$owner));
