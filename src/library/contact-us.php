@@ -28,7 +28,7 @@
         <li><a href=<?php echo '/index.php?r=measure'; ?>>Library</a></li>
         <li><a href="announcements.php">Announcements</a></li>
         <li><a href="sites-of-interest.php">Sites of Interest</a></li>
-		<li><a href="message-board.html">Message Board</a></li>
+		<li><a href="site-index.php">Message Board</a></li>
     </ul>
   </div>
 </div>

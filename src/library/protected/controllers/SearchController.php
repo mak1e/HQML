@@ -88,7 +88,7 @@ class SearchController extends Controller {
         $owner = Organisation::model()->find($ownerCriteria);
         
         $domainCriteria->select='name';
-        $domain = DomainOfQuality::model()->find($domainCriteria);
+        //$domain = DomainOfQuality::model()->find($domainCriteria);
 
          if(isset($_GET['search'])){
           $search = $_GET['search'];
@@ -96,10 +96,12 @@ class SearchController extends Controller {
           $criteria->compare('title', $search, true, 'OR');
           //$criteria->addCondition('owner_organisation_id LIKE '. $domain->id);
                 echo '<pre>';
-                print_r(CJSON::encode(array($owner)));
+                print_r(CJSON::encode($owner));
                 //print_r();
                 
                 echo '</pre>';
+
+                
         }
 
 //        $statusCriteria->select='name';
@@ -116,8 +118,9 @@ class SearchController extends Controller {
         
         
     }
- public function actionSample() {
-     print_r($domain);
+ public function ActionOptions() {
+
+     
  }
 }
 

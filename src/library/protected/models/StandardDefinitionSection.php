@@ -25,8 +25,8 @@ class StandardDefinitionSection extends CActiveRecord {
 
     public function rules() {
         $rules =  array(
-            array('name', 'safe'),
-            array('weight', 'safe')
+            array('name, description, weight', 'safe'),
+            
         ); //add rules here
         return $rules;
     }
