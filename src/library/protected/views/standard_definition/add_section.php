@@ -19,6 +19,16 @@ $form = $this->beginWidget('CActiveForm', array(
     </li>
     <li class="row">
         <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'description') ?>
+        </span>
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->textField($model, 'description', array('class' => 'medium')); ?>
+            </span>
+        </span>
+    </li>
+    <li class="row">
+        <span class="columnHeader">
             <?php echo $form->labelEx($model, 'weight') ?>
         </span>
         <span class="columnElement">

@@ -9,5 +9,5 @@ if (!$data->revision->is_locked) {
 <?php echo $data->definitionItem->name; ?>
 </h3>
 <p>
-<?php echo $data->body; ?>
+<?php print_r($data); ?>
 </p>

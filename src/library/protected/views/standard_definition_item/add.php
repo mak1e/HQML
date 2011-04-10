@@ -23,6 +23,19 @@ $form = $this->beginWidget('CActiveForm', array(
                
                 echo '<li>'.$form->labelEx($model, 'description') ;
                 echo $form->textField($model, 'description').'</li>';
+
+                echo '<li>'.$form->labelEx($model, 'attribute_type') ;
+                echo $form->textField($model, 'attribute_type').'</li>';
+
+                echo '<li>'.$form->labelEx($model, 'object_type_id') ;
+                echo $form->textField($model, 'object_type_id', array('class' => 'medium')).'</li>';
+
+                echo '<li>'.$form->labelEx($model, 'is_required') ;
+                echo $form->textField($model, 'is_required').'</li>';
+
+                echo '<li>'.$form->labelEx($model, 'maximum') ;
+                echo $form->textField($model, 'maximum').'</li>';
+
                 echo '<li>'.$form->labelEx($model, 'weight') ;
                 echo $form->textField($model, 'weight').'</li>';
                 ?>

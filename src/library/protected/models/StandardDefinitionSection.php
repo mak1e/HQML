@@ -4,6 +4,7 @@
  * Description of StandardDefinitionSection
  *
  * @author Allan Mojica
+ * @author Jaymard Colmenar
  */
 
 class StandardDefinitionSection extends CActiveRecord {
@@ -52,5 +53,7 @@ class StandardDefinitionSection extends CActiveRecord {
         ); //add labels here
         return $attributeLabels;
     }
+
+    
 }
 ?>

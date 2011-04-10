@@ -12,6 +12,10 @@ class Measure extends CActiveRecord {
      * @var int(11) $id
      * @var string(80) $title
      * @var enum $status
+     * @var int(11) owner_organisation_id
+     * @var string(320) owner_contact
+     * @var int(11) creator_organisation_id
+     * @var string(320) creator_contact
      * @var string(320) $usage
      * @var timestamp $creation_date
      */
@@ -26,18 +30,23 @@ class Measure extends CActiveRecord {
 
     public function rules() {
         $rules =  array(
-            array('title, status, usage', 'safe')
+            array('title, status, usage, owner_organisation_id,' 
+                . ' creator_organisation_id, owner_contact, creator_contact',
+                'safe')
         );
         return $rules;
     }
 
     public function relations() {
         $relations = array(
+            'ownerOrganisation' => array(self::BELONGS_TO, 'Organisation',
+                'owner_organisation_id'),
+            'creatorOrganisation' => array(self::BELONGS_TO, 'Organisation',
+                'creator_organisation_id'),
             'revisions' => array(self::HAS_MANY, 'MeasureRevision', 'measure_id',
                 'order' => 'last_updated DESC'),
             'latestRevision' => array(self::HAS_ONE, 'MeasureRevision', 
                 'measure_id', 'order' => 'last_updated DESC'),
-            'subdomain' => array(self::MANY_MANY, 'Subdomain', 'tbl_rel_measures_subdomains(measure_id, subdomain_id)')
             
         );
         return $relations;
@@ -49,8 +58,10 @@ class Measure extends CActiveRecord {
             'title' => 'Title of Measure',
             'status' => 'Status',
             'usage' => 'Potential or current usage',
-            'creation_date' => 'Date of entry to library'
-        );
+            'creation_date' => 'Date of entry to library',
+            'owner_organisation_id' => 'Owner Organisation',
+            'creator_organisation_id' => 'Creator Organisation',
+            );
         return $attributeLabels;
     }
 

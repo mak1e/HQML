@@ -14,7 +14,9 @@ echo CHtml::link('Add', array('StandardDefinitionItem/add'));
         'columns'=>array(
             'id',          // display the 'title' attribute
             'standard_definition_section_id',
-            'name', 'description', 'weight',
+            'name', 'description', 'attribute_type',
+            'is_required', 'maximum',
+            'weight',
     // display the 'name' attribute of the 'category' relation
             array(            // display a column with "view", "update" and "delete" buttons
                 'class'=>'CButtonColumn',

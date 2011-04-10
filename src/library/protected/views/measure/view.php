@@ -38,21 +38,51 @@
                 echo $item->name;
                 echo '</td>';
                 echo '<td>';
-                $itemData = MeasureItem::model()->find('standard_definition_item_id = :definitionId'
-                        . ' AND revision_id = :revisionId', array(
-                            ':definitionId' => $item->id,
-                            ':revisionId' => $revision->id));
-                if (isset($itemData)) {
-                    echo $itemData->body;
+                if ($item->is_multiple) {
+                    $itemData = MeasureItem::model()->findAll(
+                            'standard_definition_item_id = :definitionId'
+                            . ' AND revision_id = :revisionId', array(
+                                ':definitionId' => $item->id,
+                                ':revisionId' => $revision->id));
+                    $this->renderPartial('/measure/_item/viewMultiple',
+                            array('data' => $itemData));
                 } else {
+                    $itemData = MeasureItem::model()->find(
+                            'standard_definition_item_id = :definitionId'
+                            . ' AND revision_id = :revisionId', array(
+                                ':definitionId' => $item->id,
+                                ':revisionId' => $revision->id));
+                    $this->renderPartial('/measure/_item/view',
+                            array('data' => $itemData));
+                }
                     if (!$revision->is_locked) {
                         echo CHtml::link('Add Item',
                         array('/measure/addItem', 'id' => $data->id,
                             'item_id' => $item->id));
-                    } else {
-                        echo '';
                     }
-                }
+
+//                $itemData = MeasureItem::model()->findAll('standard_definition_item_id = :definitionId'
+//                        . ' AND revision_id = :revisionId', array(
+//                            ':definitionId' => $item->id,
+//                            ':revisionId' => $revision->id));
+//                if (!empty($itemData)) {
+//                    foreach ($itemData as $test) {
+//                        echo $test->getItemData();
+//                    }
+//                    if (!$revision->is_locked) {
+//                        echo ' ' . CHtml::link('Edit Item',
+//                        array('/measure/editItem', 'id' => $data->id,
+//                            'item_id' => $itemData->id));
+//                    }
+//                } else {
+//                    if (!$revision->is_locked) {
+//                        echo CHtml::link('Add Item',
+//                        array('/measure/addItem', 'id' => $data->id,
+//                            'item_id' => $item->id));
+//                    } else {
+//                        echo '';
+//                    }
+//                }
                 echo '</td>';
                 echo '</tr>';
             }
@@ -64,6 +94,8 @@
 <div class="grid_4">
     <div class="section">
         <h3>Basic Facts</h3>
+        <?php echo ' ' . CHtml::link('Edit',
+                        array('/measure/edit', 'id' => $data->id)); ?>
         <div class="sectionBody">
             <table>
                 <tr>
@@ -71,16 +103,24 @@
                     <td><?php echo $data->id; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo $data->getAttributeLabel('status'); ?></td>
-                    <td><?php echo $data->status; ?></td>
-                </tr>
-                <tr>
                     <td><?php echo $data->getAttributeLabel('creation_date'); ?></td>
                     <td><?php echo $data->creation_date; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo $data->getAttributeLabel('usage'); ?></td>
-                    <td><?php echo $data->usage; ?></td>
+                    <td><?php echo $data->getAttributeLabel('owner_organisation_id'); ?></td>
+                    <td><?php echo $data->ownerOrganisation->name; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $data->getAttributeLabel('owner_contact'); ?></td>
+                    <td><?php echo $data->owner_contact; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $data->getAttributeLabel('creator_organisation_id'); ?></td>
+                    <td><?php echo $data->creatorOrganisation->name; ?></td>
+                </tr>
+                <tr>
+                    <td><?php echo $data->getAttributeLabel('creator_contact'); ?></td>
+                    <td><?php echo $data->creator_contact; ?></td>
                 </tr>
             </table>
         </div>

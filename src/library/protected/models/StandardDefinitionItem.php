@@ -1,9 +1,10 @@
 <?php
 /**
- * @name Standard Definition Items
- * Description of MODEL_NAME
+ * @name StandardDefinitionItem
+ * Description of StandardDefinitionItem
  *
  * @author Allan Mojica
+ * @author Jaymard Colmenar
  */
 
 class StandardDefinitionItem extends CActiveRecord {
@@ -11,10 +12,13 @@ class StandardDefinitionItem extends CActiveRecord {
      * The followings columns must be present in tables of:
      * @var int(11) $id
      * @var int(11) $standard_definition_section_id
-     * @var string(80) $name
-     * @var string(160) $description
+     * @var string(320) $name
+     * @var blob $description
      * @var int(11) $weight
-     *
+     * @var enum $attribute_type
+     * @var int(11) $object_type_id
+     * @var bool $is_required
+     * @var bool $is_multiple
      */
 
     public static function model($className=__CLASS__) {
@@ -47,7 +51,9 @@ class StandardDefinitionItem extends CActiveRecord {
     public function relations() {
         $relations = array(
             'section' => array(self::BELONGS_TO, 'StandardDefinitionSection',
-                'standard_definition_section_id')
+                'standard_definition_section_id'),
+            'objectType' => array(self::BELONGS_TO, 'ObjectType',
+                'object_type_id')
         );
         return $relations;
     }

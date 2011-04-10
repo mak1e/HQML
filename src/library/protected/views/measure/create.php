@@ -22,21 +22,43 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="row">
         <span class="columnHeader">
-            <?php echo $form->labelEx($model, 'status') ?>
+            <?php echo $form->labelEx($model, 'owner_organisation_id') ?>
         </span>
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->dropDownList($model, 'status', $model->getStatusOptions()); ?>
+                <?php echo $form->dropDownList($model, 'owner_organisation_id',
+                        Organisation::getListData()); ?>
             </span>
         </span>
     </div>
     <div class="row">
         <span class="columnHeader">
-            <?php echo $form->labelEx($model, 'usage') ?>
+            <?php echo $form->labelEx($model, 'owner_contact') ?>
         </span>
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->textArea($model, 'usage'); ?>
+                <?php echo $form->textArea($model, 'owner_contact'); ?>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'creator_organisation_id') ?>
+        </span>
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->dropDownList($model, 'creator_organisation_id',
+                        Organisation::getListData()); ?>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'creator_contact') ?>
+        </span>
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->textArea($model, 'creator_contact'); ?>
             </span>
         </span>
     </div>
