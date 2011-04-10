@@ -6,6 +6,7 @@
 
 <link rel="stylesheet" type="text/css" media="all" href="css/style.css" />
 <link rel="stylesheet" type="text/css" media="all" href="css/screen.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/960.css" />
 
 </head>
 
@@ -16,17 +17,32 @@
 
 <div id="secondary-nav">
 <ul id="sub-navigation">
-        <li><a href="site-index.php">Home</a></li>
-        <li><a href="contact-us.php">Contact Us</a></li>
+<!--        <li><a href=<?php echo '' ?>>Home</a></li>
+        <li><a href="contact-us.php">Contact Us</a></li>-->
+    <?php $this->widget('zii.widgets.CMenu', array(
+        'items'=>array(
+            array('label'=>'Home', 'url'=>array('/site/index')),
+            array('label'=>'Contact Us', 'url'=>array('/site/contact')),
+            array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),
+            array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),
+        )
+    )) ?>
     </ul>
   </div>
 
 <div id="primary-nav">
 <ul id="navigation">
-        <li><a href=<?php echo '/index?r=measure' ?> class="current">Library</a></li>
-        <li><a href="announcements.php">Announcements</a></li>
-        <li><a href="sites-of-interest.php">Sites of Interest</a></li>
-		<li><a href="site-index.php">Message Board</a></li>
+         <?php $this->widget('zii.widgets.CMenu',array(
+			'items'=>array(
+				array('label'=>'Library', 'url'=>array('/measure/index')),
+                                array('label'=>'Announcements', 'url'=>array('/site/announcement')),
+                                array('label'=>'Sites of Interest', 'url'=>array('/site/sitesOfInterest')),
+                                array('label'=>'Message Board', 'url'=>array('site/index')),
+
+				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				//array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+			),
+	)); ?>
     </ul>
   </div>
 </div>
@@ -37,15 +53,16 @@
 </div>
 
 <!-- start content -->
-<div id="container">
-<div id="main-container">
+<div class="container_16 container" id="container">
+<!--<div class="grid_16" id="main-container">-->
 <?php echo $content; ?>
+<!--</div>-->
 </div>
-<div class="vertical-line"></div>
+<!--<div class="vertical-line"></div>
 <div id="right-sidebar">
 <div class="sidebar-box"><img src="images/search-bar.jpg" alt="DeOsc Media"/></div>
 <div class="sidebar-box">
-<!-- start: announcements -->
+ start: announcements 
 		<h3>Announcements</h3>
 		<ul class="newslist">
 			<li><span>12 Dec 2009 | <a href="#">0 comments</a></span>
@@ -55,10 +72,10 @@
 			<li><span>4 Jan 20010 | <a href="#">2 comments</a></span>
 				<h5><a href="#">Integer vitae nisl</a></h5> Duis volutpat ligula laoreet orci lectus placerat Curabitur lectus malesuada pulvinar.</li>
 		</ul>
-		<!-- end: announcments -->
+		 end: announcments 
 
 <div class="sidebar-box">
-<!-- start: messages -->
+ start: messages 
 		<h3>Message Board</h3>
 		<ul class="newslist">
 			<li><span>12 Dec 2009 | <a href="#">0 comments</a></span>
@@ -68,10 +85,10 @@
 			<li><span>4 Jan 20010 | <a href="#">2 comments</a></span>
 				<h5><a href="#">Integer vitae nisl</a></h5> Duis volutpat ligula laoreet orci lectus placerat Curabitur lectus malesuada pulvinar.</li>
 		</ul>
-		<!-- end: useful messages -->
+		 end: useful messages 
 
 <div class="sidebar-box">
-<!-- start: useful resources -->
+ start: useful resources 
 		<h3>Sites of Interest</h3>
 		<ul class="newslist">
 			<li><span>12 Dec 2009 | <a href="#">0 comments</a></span>
@@ -81,13 +98,13 @@
 			<li><span>4 Jan 20010 | <a href="#">2 comments</a></span>
 				<h5><a href="#">Integer vitae nisl</a></h5> Duis volutpat ligula laoreet orci lectus placerat Curabitur lectus malesuada pulvinar.</li>
 		</ul>
-		<!-- end: useful resources -->
+		 end: useful resources 
 </div>
 </div>
 </div>
 </div>
 </div>
-<!-- end content -->
+ end content -->
 
 <div class="clear-divider"></div>
 

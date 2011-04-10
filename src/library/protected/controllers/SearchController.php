@@ -7,7 +7,7 @@
  * @author Antonio San Miguel
  */
 class SearchController extends Controller {
- 
+ public $lst = array();
     /**
      * Declares class-based actions.
      */
@@ -95,11 +95,11 @@ class SearchController extends Controller {
           
           $criteria->compare('title', $search, true, 'OR');
           //$criteria->addCondition('owner_organisation_id LIKE '. $domain->id);
-                echo '<pre>';
-                print_r(CJSON::encode($owner));
-                //print_r();
-                
-                echo '</pre>';
+//               echo '<pre>';
+//                print_r(CJSON::encode($owner));
+//                //print_r();
+//
+//                echo  '</pre>';
 
                 
         }
@@ -115,12 +115,11 @@ class SearchController extends Controller {
           'domain'=>$domain,
           //'status'=>$status
         ));
-        
-        
+        //$this->Options();
+        print_r($lst);
     }
  public function ActionOptions() {
-
-     
+    return $this->renderPartial('/search/options', array('owner'=>$owner));
  }
 }
 

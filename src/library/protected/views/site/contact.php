@@ -15,9 +15,12 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
-<p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-</p>
+
+<p><strong>+64 (0) 4 473 9166</strong></p>
+<p><strong>Level 3 - 88 The Terrace, Wellington</strong></p>
+<p><strong>PO Box 8082 - The Terrace, Wellington 6143</strong></p>
+<p>&nbsp;</p>
+<p>Your feedback on this library is welcomed. Please feel free to contact us with your thoughts and suggestions for improvements by entering your message in the text box below and clicking submit.</p>
 
 <div class="form">
 

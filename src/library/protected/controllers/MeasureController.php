@@ -131,6 +131,36 @@ class MeasureController extends Controller {
 //        }
     }
 
+    public function actionViewItem() {
+        if (isset($_GET['id']) && isset($_GET['item_id'])) {
+            if (!$this->loadMeasure($_GET['id'])) {
+                echo 'This Measure does not exist';
+                Yii::app()->end();
+            }
+            if (!$this->loadStandardItem($_GET['item_id'])) {
+                echo 'This Standard Definition does not exist';
+                Yii::app()->end();
+            }
+            if ($this->_standardItem->is_multiple) {
+                $itemData = MeasureItem::model()->findAll(
+                                'standard_definition_item_id = :definitionId'
+                                . ' AND revision_id = :revisionId', array(
+                            ':definitionId' => $this->_standardItem->id,
+                            ':revisionId' => $this->_measure->latestRevision->id));
+                $this->renderPartial('/measure/_item/viewMultiple',
+                        array('data' => $itemData));
+            } else {
+                $itemData = MeasureItem::model()->find(
+                                'standard_definition_item_id = :definitionId'
+                                . ' AND revision_id = :revisionId', array(
+                            ':definitionId' => $this->_standardItem->id,
+                            ':revisionId' => $this->_measure->latestRevision->id));
+                $this->renderPartial('/measure/_item/view',
+                        array('data' => $itemData));
+            }
+        }
+    }
+
     private function addEditItem() {
         if (isset($_GET['id']) && isset($_GET['item_id'])) {
             if(!$this->loadMeasure($_GET['id'])) {
@@ -183,7 +213,7 @@ class MeasureController extends Controller {
                         $this->redirect(array('measure/view',
                             'id' => $this->_measure->id));
                     }
-                    $this->render('/measure/_item/formMultipleObject',
+                    $this->renderPartial('/measure/_item/formMultipleObject',
                             array('model' => $this->_item,
                                 'selected' => MeasureItem::getExistingObjectIds(
                                         $this->_standardItem->id,
@@ -197,7 +227,7 @@ class MeasureController extends Controller {
                             'id' => $this->_measure->id));
                         }
                     }
-                    $this->render('/measure/_item/form', array(
+                    $this->renderPartial('/measure/_item/form', array(
                         'model' => $this->_item
                     ));
                 }
