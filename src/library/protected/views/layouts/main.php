@@ -55,7 +55,7 @@
 </div>
 
 <!-- start content -->
-<div class="container_16 container" id="container">
+<div class="container_16">
 <!--<div class="grid_16" id="main-container">-->
 <?php echo $content; ?>
 <!--</div>-->

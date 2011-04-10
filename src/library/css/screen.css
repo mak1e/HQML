@@ -82,7 +82,7 @@ color:#fff;
 background: #322f8a;
 }
 
-#navigation a.current {
+#navigation ul li.active a {
 padding: 6px 6x 6px 6px;
 color:#fff;
 background: #322f8a;

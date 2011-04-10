@@ -34,7 +34,7 @@ class MeasureController extends Controller {
             } else {
                 $this->_revision = $this->_measure->latestRevision;
             }
-            $this->render('/measure/view', array('data' => $this->_measure,
+            $this->render('/measure/edit', array('data' => $this->_measure,
                 'revision' => $this->_revision));
         }
     }
@@ -103,32 +103,6 @@ class MeasureController extends Controller {
     
     public function actionAddItem() {
         $this->addEditItem();
-//        if (isset($_GET['id']) && isset($_GET['item_id'])) {
-//            $this->_measure = Measure::model()->findByPk($_GET['id']);
-//            if (!$this->_measure->latestRevision->is_locked) {
-//                $this->_item = new MeasureItem;
-//                $this->_item->standard_definition_item_id = $_GET['item_id'];
-//                if (isset($_POST['MeasureItem'])) {
-//                    if (isset($_POST['MeasureItem']['object_data_id'])
-//                            && is_array($_POST['MeasureItem']['object_data_id'])) {
-//                        foreach($_POST['MeasureItem']['object_data_id'] as $objectId) {
-//                            $item = new MeasureItem();
-//                            $item->standard_definition_item_id = $_GET['item_id'];
-//                            $item->object_data_id = $objectId;
-//                            $item->revision_id = $this->_measure->latestRevision->id;
-//                            $item->save();
-//                        }
-//                    } else {
-//                        $this->_item->attributes = $_POST['MeasureItem'];
-//                        $this->_item->revision_id = $this->_measure->latestRevision->id;
-//                        if ($this->_item->save()) {
-//                            $this->redirect(array('/measure/view', 'id' => $this->_measure->id));
-//                        }
-//                    }
-//                }
-//                $this->render('/measure/revision/_addItem', array('model' => $this->_item));
-//            }
-//        }
     }
 
     private function viewItem() {

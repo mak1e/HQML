@@ -75,8 +75,7 @@ class SearchController extends Controller {
     public function actionAdvanced() {
         $criteria = new CDbCriteria();
        $ownerCriteria = new CDbCriteria();
-        $domainCriteria = new CDbCriteria();
-        //$statusCriteria = new CDbCriteria();
+        $creatorCriteria = new CDbCriteria();
 
         //$subjectAreaCriteria = new CDbCriteria();
 
@@ -87,43 +86,25 @@ class SearchController extends Controller {
         $ownerCriteria->select='name';
         $owner = Organisation::model()->find($ownerCriteria);
         
-        $domainCriteria->select='name';
-        //$domain = DomainOfQuality::model()->find($domainCriteria);
+        $creatorCriteria->select='name';
+        //$creator = DomainOfQuality::model()->find($domainCriteria);
 
          if(isset($_GET['search'])){
           $search = $_GET['search'];
-          
           $criteria->compare('title', $search, true, 'OR');
-          //$criteria->addCondition('owner_organisation_id LIKE '. $domain->id);
-//               echo '<pre>';
-//                print_r(CJSON::encode($owner));
-//                //print_r();
-//
-//                echo  '</pre>';
                if(isset($_GET['Organisation'])){
-                    print_r($_GET['Organisation']);
-                    //$criteria->addCondition('owner_organisation_id LIKE '. $_GET['Organisation']);
+                   $a = "'".implode(',', $_GET['Organisation'][id])."'";
+                    $criteria->addCondition('owner_organisation_id LIKE '.$a);
+                   //$criteria->addCondition('owner_organisation_id LIKE '.$a);
                }
-                
         }
-         
-//        $statusCriteria->select='name';
-//        $status = DomainOfQuality::model()->find($domainCriteria);
-
         $dataProvider=new CActiveDataProvider("Measure", array('criteria'=>$criteria));
-
         $this->render('/search/advanced',array(
           'dataProvider'=>$dataProvider,
           'owner'=> $owner,
           'domain'=>$domain,
-          //'status'=>$status
         ));
-        //$this->Options();
-       
     }
- public function ActionOptions() {
-    return $this->renderPartial('/search/options', array('owner'=>$owner));
- }
 }
 
 ?>

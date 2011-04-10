@@ -20,7 +20,6 @@
 <p>To start searching for a health measure(s) simply click on the button at the bottom of this page.<br />
   Begin typing key words on which your search is based (in the designated search area) and you will be presented with a list of relevant words or terms as specific key words are located. Make your selection by clicking on your chosen search term. Alternatively you may type words which although not flagged as key words, will result in a match if the text exists within HQMNZ.<br />
   This program will find all measures that match that search terms you have used and these will be presented to you as a summarised list. You will then be able to select one or multiple matches, at which point all information pertaining to your selection will be displayed in table format. To find out what each of the table headings mean, simply hover over the field – the definition of that heading will then be displayed.</p>
-</p>
 </div>
 <div class="vertical-line"></div>
 <div id="right-sidebar">
@@ -62,7 +61,6 @@
 				<h5><a href="#">Integer vitae nisl</a></h5> Duis volutpat ligula laoreet orci lectus placerat Curabitur lectus malesuada pulvinar.</li>
 		</ul>
 		<!-- end: useful resources -->
-</div>
 </div>
 </div>
 </div>
