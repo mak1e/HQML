@@ -16,21 +16,12 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
-                'application.modules.user.models.*',
-                'application.modules.user.components.*',
-                //'extensions.Wikiext.*',
+		'application.modules.user.models.*',
+              'application.modules.user.components.*',
 	),
 
 	'modules'=>array(
-             'user',
-
-//            'user' => array(
-//			'modules' => array(
-//				'role',
-//				),
-//            'debug' => true,
-//			)
-
+		'user',
 		// uncomment the following to enable the Gii tool
 		/*
 		'gii'=>array(
@@ -42,17 +33,11 @@ return array(
 
 	// application components
 	'components'=>array(
-            'user'=>array(
-                        // enable cookie-based authentication
-                        'allowAutoLogin'=>true,
-                        'loginUrl' => array('/user/login'),
-                ),
-
-//            'user'=>array(
-//		'class' => 'application.modules.user.components.YumWebUser',
-//                    'allowAutoLogin'=>true,
-//                    'loginUrl' => array('/user/user/login'),
-//         ),
+		'user'=>array(
+			// enable cookie-based authentication
+			'allowAutoLogin'=>true,
+			'loginUrl' => array('/user/login'),
+		),
 		// uncomment the following to enable URLs in path-format
 		/*
 		'urlManager'=>array(
@@ -70,10 +55,10 @@ return array(
 
                 */
                'db' => array(
-                    'connectionString' => 'mysql:host=mysql1.openhost.net.nz;dbname=dev_hqml',
+                    'connectionString' => 'mysql:host=localhost;dbname=dev_hqml;unix_socket=/var/run/mysqld/mysqld.sock',
                     'emulatePrepare' => true,
-                    'username' => 'dev_hqml',
-                    'password' => 'd3vd3v',
+                    'username' => 'root',
+                    'password' => 'R00tP4ss',
                     'charset' => 'utf8',
                     'tablePrefix' => 'hqml_',
                     'enableProfiling' => true,

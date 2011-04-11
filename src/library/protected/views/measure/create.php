@@ -5,7 +5,7 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 <div class="form">
     <div class="rowHeader">
-        <h3>Measure</h3>
+        <h3>Add New Measure</h3>
     </div>
     <div class="row">
         <?php echo $form->errorSummary($model); ?>
@@ -14,6 +14,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <span class="columnHeader">
             <?php echo $form->labelEx($model, 'title') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
                 <?php echo $form->textField($model, 'title'); ?>
@@ -24,6 +25,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <span class="columnHeader">
             <?php echo $form->labelEx($model, 'owner_organisation_id') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
                 <?php echo $form->dropDownList($model, 'owner_organisation_id',
@@ -35,6 +37,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <span class="columnHeader">
             <?php echo $form->labelEx($model, 'owner_contact') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
                 <?php echo $form->textArea($model, 'owner_contact'); ?>
@@ -45,6 +48,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <span class="columnHeader">
             <?php echo $form->labelEx($model, 'creator_organisation_id') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
                 <?php echo $form->dropDownList($model, 'creator_organisation_id',
@@ -56,6 +60,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <span class="columnHeader">
             <?php echo $form->labelEx($model, 'creator_contact') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
                 <?php echo $form->textArea($model, 'creator_contact'); ?>

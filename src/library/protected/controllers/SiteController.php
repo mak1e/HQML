@@ -116,7 +116,7 @@ class SiteController extends Controller
 //
 //        }
 //
-        public function actionSitesOfInterest()
+        public function actionUsefulResources()
         {
             $this->render('/site/sites');
         }

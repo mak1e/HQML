@@ -30,7 +30,7 @@ class MeasureItem extends CActiveRecord {
 
     public function rules() {
         $rules =  array(
-            array('blob, date_time, decimal, integer, object_id, string',
+            array('blob, date_time, decimal, integer, object_data_id, string',
                 'safe')
         );
         return $rules;

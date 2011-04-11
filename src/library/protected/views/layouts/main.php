@@ -24,6 +24,7 @@
             array('label'=>'Home', 'url'=>array('/site/index')),
             array('label'=>'Contact Us', 'url'=>array('/site/contact')),
             array('url'=>Yii::app()->getModule('user')->loginUrl, 'label'=>Yii::app()->getModule('user')->t("Login"), 'visible'=>Yii::app()->user->isGuest),
+            array('url'=>array('/user/admin'), 'label'=>'Manage', 'visible'=>Yii::app()->getModule('user')->isAdmin()),
             array('url'=>Yii::app()->getModule('user')->logoutUrl, 'label'=>Yii::app()->getModule('user')->t("Logout").' ('.Yii::app()->user->name.')', 'visible'=>!Yii::app()->user->isGuest),
         )
     )) ?>
@@ -36,8 +37,8 @@
 			'items'=>array(
 				array('label'=>'Library', 'url'=>array('/measure/index')),
                                 array('label'=>'Announcements', 'url'=>array('/site/announcement')),
-                                array('label'=>'Sites of Interest', 'url'=>array('/site/sitesOfInterest')),
-                                array('label'=>'Message Board', 'url'=>array('site/index')),
+                                array('label'=>'Useful Resources', 'url'=>array('/site/usefulResources')),
+                                array('label'=>'Message Board', 'url'=>'/dev/message_board'),
 
 				//array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				//array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)

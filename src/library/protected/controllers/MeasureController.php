@@ -17,6 +17,31 @@ class MeasureController extends Controller {
         return array();
     }
 
+    public function filters()
+    {
+        return array(
+          'accessControl', // perform access control for CRUD operations
+                );
+        }
+
+
+    public function accessRules()
+        {
+                return array(
+                        array('allow',
+                                'actions'=>array('index', 'view'),
+                                'users'=>array('*'),
+                        ),
+                        array('allow',
+                                'actions'=>array('create', 'edit', 'editItem', 'deleteItem', 'update', 'viewItem', 'addItem', 'finaliseRevision', 'createRevision', 'ajax'),
+                                'users'=>Yii::app()->getModule('user')->getAdmins(),
+                        ),
+                        array('deny',  // deny all users
+                                'users'=>array('*'),
+                        ),
+                );
+        }
+
     public function actionIndex() {
         $dataProvider = new CActiveDataProvider('Measure');
         $this->render('/measure/index', array('dataProvider'=>$dataProvider));
@@ -34,8 +59,14 @@ class MeasureController extends Controller {
             } else {
                 $this->_revision = $this->_measure->latestRevision;
             }
-            $this->render('/measure/edit', array('data' => $this->_measure,
+            if (Yii::app()->user->getId() != NULL) {
+                            $this->render('/measure/edit', array('data' => $this->_measure,
                 'revision' => $this->_revision));
+            } else {
+                            $this->render('/measure/view', array('data' => $this->_measure,
+                'revision' => $this->_revision));
+            }
+
         }
     }
 
@@ -105,7 +136,7 @@ class MeasureController extends Controller {
         $this->addEditItem();
     }
 
-    private function viewItem() {
+    public function actionViewItem() {
         if (isset($_GET['id']) && isset($_GET['item_id'])) {
             if (!$this->loadMeasure($_GET['id'])) {
                 echo 'This Measure does not exist';
@@ -187,7 +218,7 @@ class MeasureController extends Controller {
 //                        $this->redirect(array('measure/viewItem',
 //                            'id' => $this->_measure->id,
 //                            'item_id' => $this->_standardItem->id));
-                        $this->viewItem();
+                        $this->actionViewItem();
                         Yii::app()->end();
                     }
                     $this->renderPartial('/measure/_item/formMultipleObject',
@@ -203,7 +234,7 @@ class MeasureController extends Controller {
 //                            $this->redirect(array('measure/viewItem',
 //                            'id' => $this->_measure->id,
 //                            'item_id' => $this->_standardItem->id));
-                            $this->viewItem();
+                            $this->actionViewItem();
                             Yii::app()->end();
                         }
                     }
