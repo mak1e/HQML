@@ -43,7 +43,38 @@ class MeasureController extends Controller {
         }
 
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Measure');
+        $criteria = new CDbCriteria(array('order'=>'creation_date DESC'));
+        if (isset($_GET['object_data_id'])) {
+            $values = array($_GET['object_data_id']);
+            $tempCriteria = new CDbCriteria();
+            $tempCriteria->addInCondition('object_data_id',
+                    $values);
+            $measureItems = MeasureItem::model()->findAll($tempCriteria);
+            $revisions = array();
+            foreach($measureItems as $measureItem) {
+                array_push($revisions, $measureItem->revision_id);
+            }
+            $revisions = array_unique($revisions);
+            $tempCriteria = new CDbCriteria();
+            $tempCriteria->addInCondition('id', $revisions);
+            $revisionItems = MeasureRevision::model()->findAll($tempCriteria);
+            $measures = array();
+            foreach ($revisionItems as $revisionItem) {
+                array_push($measures, $revisionItem->measure_id);
+            }
+            $measures = array_unique($measures);
+            $criteria->addInCondition('id', $measures, 'AND');
+        }
+        if (isset($_GET['organisation_id'])) {
+            $criteria->compare('owner_organisation_id',
+                    $_GET['organisation_id'], false, 'AND');
+        }
+        $dataProvider = new CActiveDataProvider('Measure',
+                array(
+                    'criteria'=>$criteria,
+                    'pagination'=>array(
+                        'pageSize'=>6,
+                    )));
         $this->render('/measure/index', array('dataProvider'=>$dataProvider));
     }
 
@@ -247,10 +278,13 @@ class MeasureController extends Controller {
     }
 
     public function actionFinaliseRevision() {
-        if(isset($_GET['id'])) {
+        if(isset($_GET['id']) && isset($_POST['MeasureRevision'])) {
             $this->_measure = Measure::model()->findByPk($_GET['id']);
             if(!$this->_measure->latestRevision->is_locked) {
-                if($this->_measure->latestRevision->saveAttributes(array('is_locked' => true))){
+                $this->_measure->latestRevision->attributes = $_POST['MeasureRevision'];
+                $this->_measure->latestRevision->save();
+                if($this->_measure->latestRevision->save() 
+                        && $this->_measure->latestRevision->saveAttributes(array('is_locked' => true))){
                     $this->redirect(array('measure/view', 'id'=>$this->_measure->id));
                 }
             }
@@ -307,7 +341,7 @@ class MeasureController extends Controller {
         }
         return false;
     }
-
+    
 }
 
 ?>

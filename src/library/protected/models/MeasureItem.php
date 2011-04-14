@@ -16,7 +16,7 @@ class MeasureItem extends CActiveRecord {
      * @var datetime $date_time
      * @var decimal(10,0) $decimal
      * @var int(11) $integer
-     * @var int(22) $object_id
+     * @var int(22) $object_data_id
      * @var string(320) $string
      */
 

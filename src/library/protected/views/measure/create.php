@@ -12,12 +12,23 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="row">
         <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'reference_number') ?>
+        </span>
+        <br />
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->textField($model, 'reference_number', array('class'=>'styled')); ?>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <span class="columnHeader">
             <?php echo $form->labelEx($model, 'title') ?>
         </span>
         <br />
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->textField($model, 'title'); ?>
+                <?php echo $form->textField($model, 'title', array('class'=>'styled')); ?>
             </span>
         </span>
     </div>
@@ -40,7 +51,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <br />
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->textArea($model, 'owner_contact'); ?>
+                <?php echo $form->textArea($model, 'owner_contact', array('class'=>'styled')); ?>
             </span>
         </span>
     </div>

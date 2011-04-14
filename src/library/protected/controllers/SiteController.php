@@ -106,19 +106,24 @@ class SiteController extends Controller
             $this->redirect(array('/measure/index'));
         }
 
-        public function actionAnnouncement()
-        {
-            $this->render('/site/announcement');
+        public function actionAnnouncement() {
+            $dataProvider = new CActiveDataProvider('Announcement',
+                    array('criteria' =>array('order' => 'date DESC')));
+            $this->render('/site/announcement',
+                    array('dataProvider' => $dataProvider));
         }
-//
-//        public function actionMessageBoard()
-//        {
-//
-//        }
-//
-        public function actionUsefulResources()
+
+        public function actionUsefulResources() {
+            $dataProvider = new CActiveDataProvider('UsefulResource',
+                    array('criteria' =>array('order' => 'title ASC')));
+            $this->render('/site/sites',
+                    array('dataProvider' => $dataProvider));
+        }
+        
+        public function actionStatistics()
         {
-            $this->render('/site/sites');
+            $data = new CActiveDataProvider('Statistics');
+            $this->render('/site/statistics', array('model'=>$data));
         }
 
 }

@@ -35,7 +35,9 @@ class MeasureRevision extends CActiveRecord {
      * @return array validation rules for model attributes.
      */
     public function rules() {
-        $rules =  array(); //add rules here
+        $rules =  array(
+            array('description', 'safe')
+        ); //add rules here
         return $rules;
     }
 

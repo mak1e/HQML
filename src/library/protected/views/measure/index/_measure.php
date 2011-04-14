@@ -9,9 +9,9 @@
         $this->renderPartial('/measure/_item/view', array('data'=>$generalDescription));
     echo '</p>';
     } ?>
-    <?php if ($data->creatorOrganisation != NULL) {
-    echo '<span><b>Created by:</b> ';
-        echo $data->creatorOrganisation->name;
+    <?php if ($data->ownerOrganisation != NULL) {
+    echo '<span><b>Owned by:</b> ';
+        echo $data->ownerOrganisation->name;
     echo '</span>';
     } ?>
     <?php $stages = MeasureItem::model()->findAll(
