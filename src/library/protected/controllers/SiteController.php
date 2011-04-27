@@ -100,4 +100,30 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+        public function actionLibrary()
+        {
+            $this->redirect(array('/measure/index'));
+        }
+
+        public function actionAnnouncement() {
+            $dataProvider = new CActiveDataProvider('Announcement',
+                    array('criteria' =>array('order' => 'date DESC')));
+            $this->render('/site/announcement',
+                    array('dataProvider' => $dataProvider));
+        }
+
+        public function actionUsefulResources() {
+            $dataProvider = new CActiveDataProvider('UsefulResource',
+                    array('criteria' =>array('order' => 'title ASC')));
+            $this->render('/site/sites',
+                    array('dataProvider' => $dataProvider));
+        }
+        
+        public function actionStatistics()
+        {
+            $data = new CActiveDataProvider('Statistics');
+            $this->render('/site/statistics', array('model'=>$data));
+        }
+
 }

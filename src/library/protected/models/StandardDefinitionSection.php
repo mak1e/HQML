@@ -4,6 +4,7 @@
  * Description of StandardDefinitionSection
  *
  * @author Allan Mojica
+ * @author Jaymard Colmenar
  */
 
 class StandardDefinitionSection extends CActiveRecord {
@@ -24,8 +25,8 @@ class StandardDefinitionSection extends CActiveRecord {
 
     public function rules() {
         $rules =  array(
-            array('name', 'safe'),
-            array('weight', 'safe')
+            array('name, description, weight', 'safe'),
+            
         ); //add rules here
         return $rules;
     }
@@ -51,6 +52,11 @@ class StandardDefinitionSection extends CActiveRecord {
             'weight' => 'Weight',
         ); //add labels here
         return $attributeLabels;
+    }
+
+    public static function getListData() {
+        return CHtml::listData(StandardDefinitionSection::model()->findAll(),
+                'id', 'name');
     }
 }
 ?>

@@ -10,9 +10,12 @@ class Measure extends CActiveRecord {
     /**
      * The followings columns must be present in tables of:
      * @var int(11) $id
+     * @var string(30) $reference_number
      * @var string(80) $title
-     * @var enum $status
-     * @var string(320) $usage
+     * @var int(11) owner_organisation_id
+     * @var string(320) owner_contact
+     * @var int(11) creator_organisation_id
+     * @var string(320) creator_contact
      * @var timestamp $creation_date
      */
 
@@ -26,18 +29,24 @@ class Measure extends CActiveRecord {
 
     public function rules() {
         $rules =  array(
-            array('title, status, usage', 'safe')
+            array('title, owner_organisation_id, creator_organisation_id, '
+                . 'owner_contact, creator_contact', 'safe'),
+            array('title, reference_number', 'required'),
+            array('reference_number', 'unique')
         );
         return $rules;
     }
 
     public function relations() {
         $relations = array(
+            'ownerOrganisation' => array(self::BELONGS_TO, 'Organisation',
+                'owner_organisation_id'),
+            'creatorOrganisation' => array(self::BELONGS_TO, 'Organisation',
+                'creator_organisation_id'),
             'revisions' => array(self::HAS_MANY, 'MeasureRevision', 'measure_id',
                 'order' => 'last_updated DESC'),
             'latestRevision' => array(self::HAS_ONE, 'MeasureRevision', 
                 'measure_id', 'order' => 'last_updated DESC'),
-            'subdomain' => array(self::MANY_MANY, 'Subdomain', 'tbl_rel_measures_subdomains(measure_id, subdomain_id)')
             
         );
         return $relations;
@@ -45,12 +54,14 @@ class Measure extends CActiveRecord {
 
     public function attributeLabels() {
         $attributeLabels = array(
-            'id' => 'Reference Number',
+            'reference_number' => 'Reference Number',
             'title' => 'Title of Measure',
-            'status' => 'Status',
-            'usage' => 'Potential or current usage',
-            'creation_date' => 'Date of entry to library'
-        );
+            'creation_date' => 'Date of entry to library',
+            'owner_organisation_id' => 'Owner Organisation',
+            'owner_contact' => 'Owner Contact Person',
+            'creator_organisation_id' => 'Creator Organisation',
+            'creator_contact' => 'Creator Contact Person',
+            );
         return $attributeLabels;
     }
 
@@ -64,20 +75,20 @@ class Measure extends CActiveRecord {
         }
     }
 
-    public function getStatusOptions() {
-        return array(
-            1 => 'Designed and Developed',
-            2 => 'Tested',
-            3 => 'Ready to Use'
-        );
-    }
-
     public static function getMeasureTitles() {
         $measureTitles = array();
         foreach(Measure::model()->findAll() as $measure) {
             array_push($measureTitles, $measure->title);
         }
         return $measureTitles;
+    }
+
+    public static function getLatestMeasures() {
+        $measureTitles = array();
+        $measures = Measure::model()->findAll(
+                array('order' => 'creation_date DESC',
+                    'limit' => 10));
+        return $measures;
     }
 }
 ?>

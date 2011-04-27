@@ -3,7 +3,8 @@ echo CHtml::beginForm(array('search/index'), 'get');
 //echo CHtml::textField('search');
 $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
     'name'=>'search',
-    'source'=>Measure::getMeasureTitles(),
+    'sourceUrl'=> array('/search/autocomplete'),
+    //'source'=>Measure::getMeasureTitles(),
     // additional javascript options for the autocomplete plugin
     'options'=>array(
         'minLength'=>'2',
@@ -15,6 +16,7 @@ $this->widget('zii.widgets.jui.CJuiAutoComplete', array(
 
 echo CHtml::submitButton('Search');
 echo CHtml::endForm();
+
 ?>
 
 <?php

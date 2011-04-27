@@ -18,16 +18,40 @@ class StandardDefinitionController extends Controller {
         return array();
     }
 
+    public function filters()
+    {
+        return array(
+          'accessControl', // perform access control for CRUD operations
+                );
+        }
+
+
+    public function accessRules()
+        {
+                return array(
+                        array('allow', 
+                                'actions'=>array('index', 'view', 'addSection', 'update', 'addItem', 'updateItem'),
+                                'users'=>Yii::app()->getModule('user')->getAdmins(),
+                        ),
+                        array('deny',  // deny all users
+                                'users'=>array('*'),
+                        ),
+                );
+        }
+
     /**
      * This is the default 'index' action that is invoked
      * when an action is not explicitly requested by users.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('StandardDefinitionSection');
-        $this->render('/standard_definition/index', array('model'=>$dataProvider));
+            //$this->actionCheck();
+            $dataProvider = new CActiveDataProvider('StandardDefinitionSection');
+            $this->render('/standard_definition/index', array('model'=>$dataProvider));
+        
     }
 
     public function  actionView(){
+        //$this->actionCheck();
         $this->_standard_definition_item = StandardDefinitionSection::model()->findByPk($_GET['id']);
         $this->render('/standard_definition/view', array('model'=>$this->_standard_definition_item));
     }
@@ -73,6 +97,7 @@ class StandardDefinitionController extends Controller {
         $this->render('/standard_definition_item/add', array('model' => $this->_standard_definition_item));
          //echo 'sample'.$_GET['id'];
     }
+
 }
 
 ?>

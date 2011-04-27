@@ -3,35 +3,44 @@ $form = $this->beginWidget('CActiveForm', array(
             'htmlOptions' => array('enctype' => 'multipart/form-data')
         ));
 ?>
-<ul class="form">
-    <li class="rowHeader">
-        <h3>Standard Definition Item</h3>
-    </li>
-
-    
-        <span class="columnElement">
-            <span class="element">
-
-                <?php
-                //echo $form->textField($model, 'standard_definition_section_id', array('class' => 'medium'));
-
-                echo '<li>'.$form->labelEx($model, 'standard_definition_section_id') ;
-                echo $form->textField($model, 'standard_definition_section_id', array('class' => 'medium')).'</li>';
-
-                echo '<li>'.$form->labelEx($model, 'name');
-                echo $form->textField($model, 'name').'</li>';
-               
-                echo '<li>'.$form->labelEx($model, 'description') ;
-                echo $form->textField($model, 'description').'</li>';
-                echo '<li>'.$form->labelEx($model, 'weight') ;
-                echo $form->textField($model, 'weight').'</li>';
-                ?>
-                </span>
-            </span>
-        
-    
-    <li class="row buttons">
+<div class="form">
+    <div class="row">
+        <?php echo $form->labelEx($model, 'standard_definition_section_id'); ?>
+        <?php echo $form->dropDownList($model, 'standard_definition_section_id',
+        StandardDefinitionSection::getListData()); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'name'); ?>
+        <?php echo $form->textField($model, 'name'); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'description'); ?>
+        <?php echo $form->textArea($model, 'description'); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'attribute_type'); ?>
+        <?php echo $form->dropDownList($model, 'attribute_type',
+                StandardDefinitionItem::getAttributesListData()); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'object_type_id'); ?>
+        <?php echo $form->dropDownList($model, 'object_type_id',
+                    ObjectType::getListData()); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'is_required'); ?>
+        <?php echo $form->checkBox($model, 'is_required'); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'is_multiple'); ?>
+        <?php echo $form->checkBox($model, 'is_multiple'); ?>
+    </div>
+    <div class="row">
+        <?php echo $form->labelEx($model, 'weight'); ?>
+        <?php echo $form->textField($model, 'weight'); ?>
+    </div>
+    <div class="row">
         <?php echo CHtml::submitButton('Add Standard Definition Item'); ?>
-    </li>
-</ul>
+    </div>
+</div>
 <?php $this->endWidget(); ?>

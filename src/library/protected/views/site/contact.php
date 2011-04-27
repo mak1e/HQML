@@ -15,17 +15,20 @@ $this->breadcrumbs=array(
 
 <?php else: ?>
 
-<p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-</p>
+<p><strong>+64 (0) 4 473 9166</strong></p>
+<p><strong>Level 3 - 88 The Terrace, Wellington</strong></p>
+<p><strong>PO Box 8082 - The Terrace, Wellington 6143</strong></p>
+<p>&nbsp;</p>
+<p>Your feedback on this library is welcomed. Please feel free to contact us with your thoughts and suggestions for improvements by entering your message in the text box below and clicking submit.</p>
 
-<div class="form">
+
+<div class="form" id="contact">
 
 <?php $form=$this->beginWidget('CActiveForm'); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<?php echo $form->errorSummary($model); ?>
+	<ul class="error_messages"><?php echo $form->errorSummary($model); ?></ul>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'name'); ?>
@@ -48,18 +51,18 @@ If you have business inquiries or other questions, please fill out the following
 	</div>
 
 	<?php if(extension_loaded('gd')): ?>
-	<div class="row">
+	<div class="row" id="verify" align="center">
 		<?php echo $form->labelEx($model,'verifyCode'); ?>
 		<div>
 		<?php $this->widget('CCaptcha'); ?>
 		<?php echo $form->textField($model,'verifyCode'); ?>
 		</div>
-		<div class="hint">Please enter the letters as they are shown in the image above.
+		<div class="hint" align="left">Please enter the letters as they are shown in the image above.
 		<br/>Letters are not case-sensitive.</div>
 	</div>
 	<?php endif; ?>
 
-	<div class="row buttons">
+	<div class="row submit" align="center">
 		<?php echo CHtml::submitButton('Submit'); ?>
 	</div>
 
@@ -68,3 +71,4 @@ If you have business inquiries or other questions, please fill out the following
 </div><!-- form -->
 
 <?php endif; ?>
+

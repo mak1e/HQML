@@ -34,8 +34,8 @@
  * @license http://www.yiiframework.com/license/
  */
 
-div.form
-{
+div.form {
+    display: block;
 }
 
 div.form input,

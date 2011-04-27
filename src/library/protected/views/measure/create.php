@@ -5,38 +5,76 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 <div class="form">
     <div class="rowHeader">
-        <h3>Measure</h3>
+        <h3>Add New Measure</h3>
     </div>
     <div class="row">
         <?php echo $form->errorSummary($model); ?>
     </div>
     <div class="row">
         <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'reference_number') ?>
+        </span>
+        <br />
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->textField($model, 'reference_number', array('class'=>'styled')); ?>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <span class="columnHeader">
             <?php echo $form->labelEx($model, 'title') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->textField($model, 'title'); ?>
+                <?php echo $form->textField($model, 'title', array('class'=>'styled')); ?>
             </span>
         </span>
     </div>
     <div class="row">
         <span class="columnHeader">
-            <?php echo $form->labelEx($model, 'status') ?>
+            <?php echo $form->labelEx($model, 'owner_organisation_id') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->dropDownList($model, 'status', $model->getStatusOptions()); ?>
+                <?php echo $form->dropDownList($model, 'owner_organisation_id',
+                        Organisation::getListData()); ?>
             </span>
         </span>
     </div>
     <div class="row">
         <span class="columnHeader">
-            <?php echo $form->labelEx($model, 'usage') ?>
+            <?php echo $form->labelEx($model, 'owner_contact') ?>
         </span>
+        <br />
         <span class="columnElement">
             <span class="element">
-                <?php echo $form->textArea($model, 'usage'); ?>
+                <?php echo $form->textArea($model, 'owner_contact', array('class'=>'styled')); ?>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'creator_organisation_id') ?>
+        </span>
+        <br />
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->dropDownList($model, 'creator_organisation_id',
+                        Organisation::getListData()); ?>
+            </span>
+        </span>
+    </div>
+    <div class="row">
+        <span class="columnHeader">
+            <?php echo $form->labelEx($model, 'creator_contact') ?>
+        </span>
+        <br />
+        <span class="columnElement">
+            <span class="element">
+                <?php echo $form->textArea($model, 'creator_contact'); ?>
             </span>
         </span>
     </div>

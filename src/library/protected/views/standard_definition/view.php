@@ -1,9 +1,4 @@
 <?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 echo '<h2>'.$model->name.'</h2>';
 echo '</br>';
 echo CHtml::link('Add', array('StandardDefinitionItem/add'));
@@ -12,9 +7,10 @@ echo CHtml::link('Add', array('StandardDefinitionItem/add'));
         $this->widget('zii.widgets.grid.CGridView', array(
         'dataProvider'=>new CArrayDataProvider($model->items), 
         'columns'=>array(
-            'id',          // display the 'title' attribute
-            'standard_definition_section_id',
-            'name', 'description', 'weight',
+            'section.name',
+            'name', 'description', 'attribute_type',
+            'is_required', 'is_multiple',
+            'weight',
     // display the 'name' attribute of the 'category' relation
             array(            // display a column with "view", "update" and "delete" buttons
                 'class'=>'CButtonColumn',
